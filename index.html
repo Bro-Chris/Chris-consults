@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chris Consults Online Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      padding-bottom: 100px; /* Ensures the footer doesn't overlap content */
+    }
+
+    header {
+      background-color: #ff9900;
+      color: white;
+      padding: 25px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      width: 120px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .logo-container span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #f1c40f;
+    }
+
+    <!-- Search Bar at the Top Center -->
+<div class="search-bar">
+  <input type="text" placeholder="Search for products or services...">
+</div>
+
+<header>
+  <div class="logo-container">
+    <img id="logo-image" src="images/my_logo.png" alt="Logo">
+    <span>Chris Consults</span>
+  </div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+    .search-bar input {
+      width: 90%;
+      padding: 10px;
+      border-radius: 25px;
+      border: 2px solid #ff9900;
+    }
+
+    main {
+      padding: 30px 50px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .product {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .product:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .product h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .product p {
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    .product button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .product button:hover {
+      background-color: #218838;
+    }
+
+    /* Cart at the Center */
+    .cart {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Centers the cart */
+      background: #fff;
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: auto;
+      z-index: 100;
+    }
+
+    .cart span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .checkout-btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .checkout-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Checkout Form */
+    #checkout-form {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      z-index: 2000;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    #checkout-form h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    #checkout-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    #checkout-form button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    #checkout-form button:hover {
+      background-color: #218838;
+    }
+
+    /* Product Image Carousel */
+    .carousel {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .carousel img {
+      width: 32%;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .carousel img:hover {
+      transform: scale(1.05);
+    }
+
+    .carousel-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .carousel-button:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+  <div class="logo-container">
+    <!-- Replace the 'src' with the actual path to your logo image -->
+    <img id="logo-image" src="logo.jpg" alt="Logo">
+    <span>Chris Consults</span>
+  </div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </nav>
+  <div class="search-bar">
+    <input type="text" placeholder="Search for products or services...">
+  </div>
+</header>
+
+<!-- Main Content Section -->
+<main>
+  <div class="products">
+    <!-- Product 1 -->
+    <div class="product">
+      <div class="carousel">
+        <img src="1.jpg" alt="Product Image 1" id="product-img-1">
+        <img src="2.jpg" alt="Product Image 1" id="product-img-2">
+        <img src="3.jpg" alt="Product Image 1" id="product-img-3">
+      </div>
+      <h3>Luxury Sofa</h3>
+      <p>N550,000</p>
+      <button onclick="addToCart()">Add to Cart</button>
+      <button class="carousel-button" onclick="showNextImage(1)">Next Image</button>
+    </div>
+    <!-- Product 2 -->
+    <div class="product">
+      <div class="carousel">
+        <img src="11.jpg" alt="Product Image 2" id="product-img-4">
+        <img src="12.jpg" alt="Product Image 2" id="product-img-5">
+        <img src="13.jpg" alt="Product Image 2" id="product-img-6">
+      </div>
+      <h3>Queen Size Bed</h3>
+      <p>(6x6)
+      <p>N280,000</p>
+      <button onclick="addToCart()">Add to Cart</button>
+      <button class="carousel-button" onclick="showNextImage(2)">Next Image</button>
+    </div>
+      <!-- Add more products similarly -->
+    <div class="product">
+      <div class="carousel">
+        <img src="100.jpg" alt="Product Image 2" id="product-img-4">
+        <img src="200.jpg" alt="Product Image 2" id="product-img-5">
+        <img src="300.jpg" alt="Product Image 2" id="product-img-6">
+      </div>
+      <h3>Modern Dressing Mirrow</h3>
+      <p>N200,000</p>
+      <button onclick="addToCart()">Add to Cart</button>
+      <button class="carousel-button" onclick="showNextImage(2)">Next Image</button>
+  </div>
+</main>
+<main>
+  <div class="products">
+    <!-- Product 1 -->
+    <div class="product">
+      <div class="carousel">
+        <img src="111.jpg" alt="Product Image 1" id="product-img-1">
+        <img src="222.jpg" alt="Product Image 1" id="product-img-2">
+        <img src="333.jpg" alt="Product Image 1" id="product-img-3">
+      </div>
+      <h3>Wardrobe</h3>
+      <p>(3x6)
+      <p>N130,000</p>
+      <button onclick="addToCart()">Add to Cart</button>
+      <button class="carousel-button" onclick="showNextImage(1)">Next Image</button>
+    </div>
+    <!-- Product 2 -->
+    <div class="product">
+      <div class="carousel">
+        <img src="10.jpg" alt="Product Image 2" id="product-img-4">
+        <img src="20.jpg" alt="Product Image 2" id="product-img-5">
+        <img src="30.jpg" alt="Product Image 2" id="product-img-6">
+      </div>
+      <h3>Executive sofa</h3>
+      <p>N850,000</p>
+      <button onclick="addToCart()">Add to Cart</button>
+      <button class="carousel-button" onclick="showNextImage(2)">Next Image</button>
+    </div>
+<!-- Cart at the Center -->
+<div class="cart">
+  <span>Cart:</span> <span id="cart-count">0</span> items
+  <button class="checkout-btn" onclick="checkout()">Checkout</button>
+</div>
+
+<!-- Checkout Form Popup -->
+<div id="checkout-form">
+  <h2>Complete Your Order</h2>
+  <form action="https://formsubmit.co/princechrisboy@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New Order from Chris Consults!">
+    <input type="text" name="Name" placeholder="Your Name" required>
+    <input type="email" name="Email" placeholder="Your Email" required>
+    <input type="text" name="Phone" placeholder="Your Phone Number" required>
+    <input type="hidden" name="Items" id="order-items" value="">
+    <button type="submit">Submit Order</button>
+  </form>
+  <button onclick="closeForm()">Cancel</button>
+</div>
+      <!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chris Consults - Architectural Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  padding-bottom: 100px;
+}
+
+header {
+  background-color: #ff9900;
+  color: white;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-container img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+
+.logo-container span {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #f1c40f;
+}
+
+.search-bar {
+  margin-top: 10px;
+}
+
+.search-bar input {
+  width: 300px;
+  padding: 8px;
+  border-radius: 25px;
+  border: 2px solid #ff9900;
+}
+
+main {
+  padding: 50px 60px;
+}
+
+.architecture-section {
+  text-align: center;
+}
+
+.architecture-section h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.services-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.service-card {
+  background-color: #fff;
+  width: 250px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.order-button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.order-button:hover {
+  background-color: #218838;
+}
+
+footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px;
+  background-color: #222;
+  color: #fff;
+  font-size: 14px;
+}
+
+.bottom-animation {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.bottom-animation img {
+  width: 250px;
+  height: auto;
+}
+
+  </style>
+</nav>
+</header><div class="search-bar" style="padding: 20px 60px;">
+  <input type="text" placeholder="Search for products or services...">
+</div><main>
+  <section id="architectural-services" class="architecture-section">
+    <h2>Our Architectural Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="design.jpg" alt="Design Consultation">
+        <h3>Design Consultation</h3>
+        <p>Expert design advice to turn your dream home into reality.</p>
+        <button class="order-button">Request Consultation</button>
+      </div>
+      <div class="service-card">
+        <img src="3d.jpg" alt="3D Modeling">
+        <h3>3D Modeling & Visualization</h3>
+        <p>See your building in 3D before construction starts.</p>
+        <button class="order-button">Request Service</button>
+      </div>
+      <div class="service-card">
+        <img src="site.jpg" alt="Site Supervision">
+        <h3>Site Supervision</h3>
+        <p>Professional supervision to guarantee quality projects.</p>
+        <button class="order-button">Hire Us</button>
+      </div>
+      <div class="service-card">
+        <img src="project.jpg" alt="Project Management">
+        <h3>Project Management</h3>
+        <p>From start to finish, we handle your building project professionally.</p>
+        <button class="order-button">Get Started</button>
+     
+</footer></body>
+</html>
+  
+    </div><section class="gif-section">
+
+<!-- Animated GIF Section -->
+<section style="text-align: center; margin: 50px 0;">
+  <img src="anime.gif" alt="Exciting Animation" style="max-width: 100%; height: auto;">
+  <h2>Scan to Visit Us Online!</h2>
+    <img src="qr-code.png" alt="QR Code" style="width:180px;height:180px;">
+    <p>Thank you for choosing Bro Chris!</p>
+</section>
+<!-- Footer Section -->
+<footer>
+  &copy; 2025 Chris Consults. All rights reserved.
+</footer>
+
+<script>
+  let cartCount = 0;
+
+  function addToCart() {
+    cartCount++;
+    document.getElementById('cart-count').innerText = cartCount;
+  }
+
+  function checkout() {
+    if (cartCount === 0) {
+      alert("Your cart is empty!");
+    } else {
+      document.getElementById('checkout-form').style.display = 'block';
+      document.getElementById('order-items').value = cartCount;
+    }
+  }
+
+  function closeForm() {
+    document.getElementById('checkout-form').style.display = 'none';
+  }
+
+  let currentImageIndex = 0;
+  const productImages = [
+    ["https://via.placeholder.com/300", "https://via.placeholder.com/300/ff5733", "https://via.placeholder.com/300/33ff57"],
+    ["https://via.placeholder.com/300", "https://via.placeholder.com/300/ff5733", "https://via.placeholder.com/300/33ff57"]
+  ];
+
+  function showNextImage(productId) {
+    currentImageIndex = (currentImageIndex + 1) % productImages[productId - 1].length;
+    document.getElementById('product-img-' + productId).src = productImages[productId - 1][currentImageIndex];
+  }
+</script>
+
+</body>
+</html>
