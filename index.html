@@ -1,4 +1,237 @@
 <!DOCTYPE html>
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chris Consults - Furniture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>.logo-container span {
+  font-family: 'Pacifico', cursive;
+  font-size: 30px;
+  font-weight: normal;
+}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background: #f9f9f9; color: #333; padding-bottom: 100px; }header {
+  background: #ff9900;
+  color: white;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-container img { width: 80px; height: auto; }
+.logo-container span { font-size: 22px; font-weight: bold; }
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+nav a:hover { color: #f1c40f; }
+
+.search-bar {
+  margin-top: 10px;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 200px;
+  border: none;
+  border-radius: 20px;
+}
+
+main { padding: 30px 50px; }
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.product {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.product:hover { transform: translateY(-5px); }
+
+.product img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.carousel { display: flex; gap: 5px; justify-content: center; }
+.carousel img { width: 30%; height: 60px; object-fit: cover; border-radius: 5px; }
+
+.product button {
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.product button:hover { background: #218838; }
+
+.cart {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+}
+
+.checkout-btn {
+  background: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout-btn:hover { background: #0056b3; }
+
+#checkout-form {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  z-index: 200;
+  width: 300px;
+}
+
+#checkout-form input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#checkout-form button {
+  background: #28a745;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #222;
+  color: white;
+  font-size: 14px;
+  margin-top: 50px;
+}
+
+  
+<div class="product">
+  <div class="carousel">
+    <img src="111.jpg" alt="Wardrobe">
+    <img src="222.jpg" alt="Wardrobe">
+    <img src="333.jpg" alt="Wardrobe">
+  </div>
+  <h3>Wardrobe</h3>
+  <p>N130,000</p>
+  <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+<div class="product">
+  <div class="carousel">
+    <img src="100.jpg" alt="Mirror">
+    <img src="200.jpg" alt="Mirror">
+    <img src="300.jpg" alt="Mirror">
+  </div>
+  <h3>Modern Dressing Mirror</h3>
+  <p>N200,000</p>
+  <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+  </div>
+</main><div class="cart">
+  <span>Cart:</span> <span id="cart-count">0</span> items
+  <button class="checkout-btn" onclick="checkout()">Checkout</button>
+</div><div id="checkout-form">
+  <h2>Checkout</h2>
+  <form action="https://formsubmit.co/princechrisboy@gmail.com" method="POST">
+    <input type="text" name="Name" placeholder="Your Name" required>
+    <input type="email" name="Email" placeholder="Your Email" required>
+    <input type="text" name="Phone" placeholder="Phone Number" required>
+    <input type="hidden" name="Items" id="order-items">
+    <button type="submit">Submit Order</button>
+  </form>
+  <button onclick="closeForm()">Cancel</button>
+</div><footer>
+  &copy; 2025 Chris Consults. All Rights Reserved.
+</footer><script>
+  let cartCount = 0;
+
+  function addToCart() {
+    cartCount++;
+    document.getElementById('cart-count').innerText = cartCount;
+  }
+
+  function checkout() {
+    if (cartCount > 0) {
+      document.getElementById('checkout-form').style.display = 'block';
+      document.getElementById('order-items').value = cartCount + ' items';
+    } else {
+      alert('Your cart is empty!');
+    }
+  }
+
+  function closeForm() {
+    document.getElementById('checkout-form').style.display = 'none';
+  }
+</script></body>
+</html><link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -22,10 +255,10 @@
     header {
       background-color: #ff9900;
       color: white;
-      padding: 25px 60px;
+      padding: 25px 90px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: ;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -38,13 +271,13 @@
     }
 
     .logo-container img {
-      width: 120px;
+      width: 150px;
       height: auto;
       object-fit: contain;
     }
 
     .logo-container span {
-      font-size: 20px;
+      font-size: 35px;
       font-weight: bold;
     }
 
@@ -66,7 +299,7 @@
     }
 
     <!-- Search Bar at the Top Center -->
-<div class="search-bar">
+<div class="g-bar">
   <input type="text" placeholder="Search for products or services...">
 </div>
 
@@ -76,18 +309,13 @@
     <span>Chris Consults</span>
   </div>
   <nav>
-    <a href="#">Home</a>
-    <a href="#">Shop</a>
-    <a href="#">Services</a>
-    <a href="#">Contact</a>
   </nav>
 </header>
-
-    .search-bar input {
+.search-bar input {
       width: 90%;
       padding: 10px;
       border-radius: 25px;
-      border: 2px solid #ff9900;
+      border: 2px solid #;
     }
 
     main {
@@ -390,7 +618,7 @@
 header {
   background-color: #ff9900;
   color: white;
-  padding: 20px 60px;
+  padding: 30px 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -419,7 +647,7 @@ nav {
 }
 
 nav a {
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
@@ -434,8 +662,8 @@ nav a:hover {
 }
 
 .search-bar input {
-  width: 300px;
-  padding: 8px;
+  width: 200px;
+  padding: 5px;
   border-radius: 25px;
   border: 2px solid #ff9900;
 }
@@ -449,7 +677,7 @@ main {
 }
 
 .architecture-section h2 {
-  font-size: 28px;
+  font-size: 50px;
   margin-bottom: 30px;
   font-weight: bold;
 }
